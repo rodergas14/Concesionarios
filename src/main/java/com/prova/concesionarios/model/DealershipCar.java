@@ -2,10 +2,29 @@ package com.prova.concesionarios.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Dealerships")
 public class DealershipCar {
+	
+	@Column(name = "name")
 	private String name;
+	
+	@EmbeddedId
 	private Address address;
+	
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			mappedBy = "delearshipCar"
+			)
 	private Set<Car> cars;
+	
 	public String getName() {
 		return name;
 	}
