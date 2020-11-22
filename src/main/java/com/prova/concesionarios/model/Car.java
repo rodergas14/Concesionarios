@@ -40,8 +40,8 @@ public class Car extends BaseEntity{
 	@JoinColumn(name = "dealershipCarStreet", referencedColumnName = "street", insertable = false, updatable = false)
 	@JoinColumn(name = "dealershipCarCity", referencedColumnName = "city",insertable = false, updatable = false)
 	@JoinColumn(name = "dealershipCarCountry", referencedColumnName = "country",insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipStateOrProvince",referencedColumnName = "stateOrProvince", insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipZipCode",referencedColumnName = "zipcode", insertable = false, updatable = false)
+	@JoinColumn(name = "dealershipCarStateOrProvince",referencedColumnName = "stateOrProvince", insertable = false, updatable = false)
+	@JoinColumn(name = "dealershipCarZipCode",referencedColumnName = "zipcode", insertable = false, updatable = false)
 	private DealershipCar delearshipCar;
 
 	public String getName() {
