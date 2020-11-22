@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.prova.concesionarios.exceptions.DeleteCarException;
+import com.prova.concesionarios.exceptions.UpdateCarException;
 import com.prova.concesionarios.model.Car;
 import com.prova.concesionarios.repositories.CarRepository;
 
@@ -55,14 +57,14 @@ public class CarService {
 
 	private boolean isCarUpdatable(Car car) {
 		boolean isUpdatable = true;
-		if(car.getIsSold()) throw new IllegalArgumentException("No se puede eliminar el coche");
+		if(car.getIsSold()) throw new UpdateCarException("No se puede eliminar el coche");
 
 		return isUpdatable;
 	}
 	
 	private boolean isCarDeletable(Car car) {
 		boolean isDeletable = true;
-		if(car.getIsSold()) throw new IllegalArgumentException("No se puede eliminar el coche");
+		if(car.getIsSold()) throw new DeleteCarException("No se puede eliminar el coche");
 		
 		return isDeletable;
 	}
