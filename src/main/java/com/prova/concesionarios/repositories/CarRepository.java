@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.prova.concesionarios.model.Car;
 
 @Repository
-public interface CarJPARepository extends JpaRepository<Car, Long>{
+public interface CarRepository extends JpaRepository<Car, Long>{
 	public List<Car> findAll(Sort sort);
 }

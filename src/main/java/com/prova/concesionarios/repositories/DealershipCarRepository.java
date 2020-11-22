@@ -7,7 +7,7 @@ import com.prova.concesionarios.model.Address;
 import com.prova.concesionarios.model.DealershipCar;
 
 @Repository
-public interface DealershipCarJPARepository extends JpaRepository<DealershipCar, Address>{
+public interface DealershipCarRepository extends JpaRepository<DealershipCar, Address>{
 	
 	
 }
