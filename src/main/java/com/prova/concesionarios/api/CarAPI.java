@@ -46,7 +46,7 @@ public class CarAPI {
     public ResponseEntity<Car> getById(@PathVariable("id") Long id) {
         return carService.findById(id)
      		   .map(ResponseEntity::ok)
-     		   .orElse(ResponseEntity.notFound().build());
+     		   .orElseGet(() -> ResponseEntity.notFound().build());
     }
     
     @GetMapping
@@ -59,7 +59,7 @@ public class CarAPI {
     		@PathVariable("id") Long id) {
     	return carService.updateCar(car, id)
     			.map(carInstance -> ResponseEntity.noContent().<Void>build())
-    			.orElse(ResponseEntity.notFound().build());
+    			.orElseGet(() -> ResponseEntity.notFound().build());
     }
     
     
@@ -67,7 +67,7 @@ public class CarAPI {
     public ResponseEntity<Void> deleteCar(@PathVariable("id") Long id) {
     	return carService.deleteCar(id)
 		    	.map(car -> ResponseEntity.ok().<Void>build())
-    			.orElse(ResponseEntity.notFound().build());
+    			.orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }
