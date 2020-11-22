@@ -13,40 +13,44 @@ import com.prova.concesionarios.services.CarService;
 @Service
 public class CarServiceImpl implements CarService {
 	
-	private final CarRepository carJPARepository;
+	private final CarRepository carRepostiory;
 	
 	public CarServiceImpl(CarRepository carJPARepository) {
-		this.carJPARepository = carJPARepository;
+		this.carRepostiory = carJPARepository;
 	}
 	
 	@Override
 	public Car insertCar(Car car) {
-		return carJPARepository.save(car);
+		return carRepostiory.save(car);
 	}
 	
 	@Override
 	public List<Car> findAll(Sort sort) {
-		return carJPARepository.findAll(sort);
+		return carRepostiory.findAll(sort);
 	}
 
 	@Override
 	public Optional<Car> findById(Long id) {
-		return carJPARepository.findById(id);
+		return carRepostiory.findById(id);
 	}
 
 	@Override
 	public Optional<Car> updateCar(Car c, Long id) {
-		return carJPARepository.findById(id)
+		return carRepostiory.findById(id)
 				.map(car -> {
-					return carJPARepository.save(car);
+					return carRepostiory.save(car);
 				});
 		
 		
 	}
 
 	@Override
-	public void deleteCar(Long id) {
-		carJPARepository.deleteById(id);
+	public Optional<Car> deleteCar(Long id) {
+		return carRepostiory.findById(id)
+				.map(car -> {
+					carRepostiory.deleteById(id);
+					return car;
+				});
 	}
 
 
