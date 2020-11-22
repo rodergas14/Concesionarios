@@ -12,6 +12,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Formula;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +31,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class DealershipCar {
 	
 	@Column(name = "NAME")
@@ -34,6 +40,7 @@ public class DealershipCar {
 	@EmbeddedId
 	private Address address;
 	
+	@JsonManagedReference
 	@OneToMany(
 			cascade = CascadeType.ALL,
 			mappedBy = "delearshipCar"
@@ -41,7 +48,7 @@ public class DealershipCar {
 	private Set<Car> cars;
 	
 	
-	@Formula("(select COALESCE(sum(c.SELLING_PRICE),0) - COALESCE(sum(c.COST),0)  from CAR c "
+	@Formula("(select ROUND(COALESCE(sum(c.SELLING_PRICE),0) - COALESCE(sum(c.COST),0) , 2)  from CAR c "
 			+ "where c.DEALERSHIP_CAR_STREET = STREET "
 			+ "AND c.DEALERSHIP_CAR_CITY = CITY "
 			+ "AND c.DEALERSHIP_CAR_COUNTRY = COUNTRY "

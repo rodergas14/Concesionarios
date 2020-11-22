@@ -39,10 +39,7 @@ public class CarService {
 			carInstance.setSellingDate(car.getSellingDate());
 			carInstance.setSellingPrice(car.getSellingPrice());
 			return carRepository.save(carInstance);
-		})
-		.map(Optional::of)
-		.orElseThrow(() -> new  IllegalArgumentException("No se puede modificar el coche"));
-				
+		});
 	}
 
 	public Optional<Car> deleteCar(Long id) {
@@ -51,21 +48,21 @@ public class CarService {
 		.filter(carInstance -> isCarDeletable(carInstance))
 		.map(carInstance -> {
 			carRepository.delete(carInstance);
-			return Optional.of(carInstance);
-		})
-		.orElseThrow(() -> new IllegalArgumentException("No se puede eliminar el coche"));
+			return carInstance;
+		});
+		
 	}
-	
+
 	private boolean isCarUpdatable(Car car) {
 		boolean isUpdatable = true;
-		if(car.getIsSold()) isUpdatable = false;
+		if(car.getIsSold()) throw new IllegalArgumentException("No se puede eliminar el coche");
 
 		return isUpdatable;
 	}
 	
 	private boolean isCarDeletable(Car car) {
 		boolean isDeletable = true;
-		if(car.getIsSold()) isDeletable = false;
+		if(car.getIsSold()) throw new IllegalArgumentException("No se puede eliminar el coche");
 		
 		return isDeletable;
 	}

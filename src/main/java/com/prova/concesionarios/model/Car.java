@@ -14,7 +14,11 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,7 +60,7 @@ public class Car extends BaseEntity{
 	@Column(name = "SELLING_PRICE")
 	private Double sellingPrice;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "DEALERSHIP_CAR_STREET", referencedColumnName = "STREET", insertable = false, updatable = false)
 	@JoinColumn(name = "DEALERSHIP_CAR_CITY", referencedColumnName = "CITY",insertable = false, updatable = false)
