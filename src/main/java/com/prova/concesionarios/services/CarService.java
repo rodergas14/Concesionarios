@@ -23,6 +23,8 @@ public class CarService {
 	}
 
 	public List<Car> findAll(Sort sort) {
+		sort.stream()
+		.filter(predicate)
 		return carRepository.findAll(sort);
 	}
 
@@ -45,10 +47,17 @@ public class CarService {
 	}
 
 	public Optional<Car> deleteCar(Long id) {
-		return carRepository.findById(id).map(car -> {
+		
+		Optional<Car> selectedCarOptional = carRepository.findById(id);
+		
+		Car selectedCar = selectedCarOptional.get();
+		if(isCarDeletable(selectedCar)) {
 			carRepository.deleteById(id);
-			return car;
-		});
+		}else {
+			throw new RuntimeException("No se puede eliminar un coche ya vendido");
+		}
+		
+		return selectedCarOptional;
 	}
 	
 	
@@ -57,5 +66,12 @@ public class CarService {
 		if(car.getIsSold()) isUpdatable = false;
 		
 		return isUpdatable;
+	}
+	
+	private boolean isCarDeletable(Car car) {
+		boolean isDeletable = true;
+		if(car.getIsSold()) isDeletable = false;
+		
+		return isDeletable;
 	}
 }
