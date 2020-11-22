@@ -16,7 +16,6 @@ public class ConcesionariosApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx  = SpringApplication.run(ConcesionariosApplication.class, args);
 		DealershipCarJPARepository repo = ctx.getBean(DealershipCarJPARepository.class);
-		System.out.println("loco " + repo.findAll().size());
 		repo.findAll().forEach(deal ->{
 			System.out.println(deal.getName() + " " + deal.getBenefits() );
 				}
