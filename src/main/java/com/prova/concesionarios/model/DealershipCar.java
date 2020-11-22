@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Formula;
 
 @Entity
-@Table(name = "Dealerships")
+@Table(name="DEALERSHIP_CAR")
 public class DealershipCar {
 	
 	@Column(name = "name")
