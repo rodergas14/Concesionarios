@@ -34,8 +34,14 @@ public class CarService {
 		
 		return carRepository.findById(id)
 		.filter(carInstance -> isCarUpdatable(carInstance))
-		.map(carInstance -> Optional.of(carRepository.save(car)))
-		.orElseThrow(() -> new RuntimeException("No se puede modificar el coche"));
+		.map(carInstance -> {
+			carInstance.setRegistrationNumber(car.getRegistrationNumber());
+			carInstance.setSellingDate(car.getSellingDate());
+			carInstance.setSellingPrice(car.getSellingPrice());
+			return carRepository.save(carInstance);
+		})
+		.map(Optional::of)
+		.orElseThrow(() -> new  IllegalArgumentException("No se puede modificar el coche"));
 				
 	}
 
@@ -47,13 +53,13 @@ public class CarService {
 			carRepository.delete(carInstance);
 			return Optional.of(carInstance);
 		})
-		.orElseThrow(() -> new RuntimeException("No se puede eliminar el coche"));
+		.orElseThrow(() -> new IllegalArgumentException("No se puede eliminar el coche"));
 	}
 	
 	private boolean isCarUpdatable(Car car) {
 		boolean isUpdatable = true;
 		if(car.getIsSold()) isUpdatable = false;
-		
+
 		return isUpdatable;
 	}
 	

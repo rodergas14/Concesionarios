@@ -1,14 +1,13 @@
 package com.prova.concesionarios.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,20 +17,17 @@ import lombok.Data;
 
 @MappedSuperclass
 @Data
-public class BaseEntity implements Serializable {
+public abstract class  BaseEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	protected Long id;
 	
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    protected LocalDateTime created;
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated;
-
+    protected LocalDateTime updated;
 
 	@Override
 	public int hashCode() {
