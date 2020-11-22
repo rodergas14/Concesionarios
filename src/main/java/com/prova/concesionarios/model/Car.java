@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -47,9 +48,11 @@ public class Car extends BaseEntity{
 	private BigDecimal cost;
 	
 	@Column(name = "SELLING_DATE")
+	@JsonFormat(pattern="dd/MM/YYYY HH:mm:ss")
 	private LocalDateTime sellingDate;
 	
 	@Column(name = "ADMISSION_DATE")
+	@JsonFormat(pattern="dd/MM/YYYY HH:mm:ss")
 	private LocalDateTime admissionDate;
 	
 	@Column(name = "IS_SOLD")
