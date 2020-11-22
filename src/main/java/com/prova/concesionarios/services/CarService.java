@@ -31,8 +31,17 @@ public class CarService {
 	}
 
 	public Optional<Car> updateCar(Car c, Long id) {
-		return carRepository.findById(id)
-				.map(carRepository::save);
+		Optional<Car> selectedCarOptional = carRepository.findById(id);
+		
+		Car selectedCar = selectedCarOptional.get();
+		if(isCarUpdatable(selectedCar)) {
+			carRepository.save(selectedCar);
+		}else {
+			throw new RuntimeException("No se puede modificar un coche ya vendido");
+		}
+		
+		return selectedCarOptional;
+				
 	}
 
 	public Optional<Car> deleteCar(Long id) {
@@ -41,5 +50,12 @@ public class CarService {
 			return car;
 		});
 	}
-
+	
+	
+	private boolean isCarUpdatable(Car car) {
+		boolean isUpdatable = true;
+		if(car.getIsSold()) isUpdatable = false;
+		
+		return isUpdatable;
+	}
 }
