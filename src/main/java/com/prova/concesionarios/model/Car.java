@@ -21,36 +21,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Car extends BaseEntity{
 	
-	@Column(name = "name")
+	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "brand")
+	@Column(name = "BRAND")
 	private String brand;
 	
-	@Column(name = "cost")
+	@Column(name = "COST")
 	private Double cost;
 	
-	@Column(name = "sellingDate")
+	@Column(name = "SELLING_DATE")
 	private LocalDateTime sellingDate;
 	
-	@Column(name = "admissionDate")
+	@Column(name = "ADMISSION_DATE")
 	private LocalDateTime admissionDate;
 	
-	@Column(name = "isSold")
+	@Column(name = "IS_SOLD")
 	private Boolean isSold;
 	
-	@Column(name = "registrationNumber")
+	@Column(name = "REGISTRATION_NUMBER")
 	private String registrationNumber;
 	
-	@Column(name = "sellingPrice")
+	@Column(name = "SELLING_PRICE")
 	private Double sellingPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "dealershipCarStreet", referencedColumnName = "street", insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipCarCity", referencedColumnName = "city",insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipCarCountry", referencedColumnName = "country",insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipCarStateOrProvince",referencedColumnName = "stateOrProvince", insertable = false, updatable = false)
-	@JoinColumn(name = "dealershipCarZipCode",referencedColumnName = "zipcode", insertable = false, updatable = false)
+	@JoinColumn(name = "DEALERSHIP_CAR_STREET", referencedColumnName = "STREET", insertable = false, updatable = false)
+	@JoinColumn(name = "DEALERSHIP_CAR_CITY", referencedColumnName = "CITY",insertable = false, updatable = false)
+	@JoinColumn(name = "DEALERSHIP_CAR_COUNTRY", referencedColumnName = "COUNTRY",insertable = false, updatable = false)
+	@JoinColumn(name = "DEALERSHIP_CAR_STATE_OR_PROVINCE",referencedColumnName = "STATE_OR_PROVINCE", insertable = false, updatable = false)
+	@JoinColumn(name = "DEALERSHIP_CAR_ZIP_CODE",referencedColumnName = "ZIP_CODE", insertable = false, updatable = false)
 	private DealershipCar delearshipCar;
 
 	

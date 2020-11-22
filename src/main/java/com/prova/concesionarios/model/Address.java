@@ -19,15 +19,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address implements Serializable{
-	@Column(name = "street")
+	@Column(name = "STREET")
 	private String street;
-	@Column(name = "city")
+	@Column(name = "CITY")
 	private String city;
-	@Column(name = "country")
+	@Column(name = "COUNTRY")
 	private String country;
-	@Column(name = "stateOrProvince")
+	@Column(name = "STATE_OR_PROVINCE")
 	private String stateOrProvince;
-	@Column(name = "zipCode")
+	@Column(name = "ZIP_CODE")
 	private String zipCode;
 	
 	

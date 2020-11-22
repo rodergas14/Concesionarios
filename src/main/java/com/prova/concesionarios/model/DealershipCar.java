@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DealershipCar {
 	
-	@Column(name = "name")
+	@Column(name = "NAME")
 	private String name;
 	
 	@EmbeddedId
