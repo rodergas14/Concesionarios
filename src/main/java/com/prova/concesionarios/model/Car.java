@@ -1,5 +1,6 @@
 package com.prova.concesionarios.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -42,8 +43,8 @@ public class Car extends BaseEntity{
 	@Column(name = "BRAND")
 	private String brand;
 	
-	@Column(name = "COST")
-	private Double cost;
+	@Column(name = "COST", scale = 2)
+	private BigDecimal cost;
 	
 	@Column(name = "SELLING_DATE")
 	private LocalDateTime sellingDate;
@@ -57,8 +58,8 @@ public class Car extends BaseEntity{
 	@Column(name = "REGISTRATION_NUMBER")
 	private String registrationNumber;
 	
-	@Column(name = "SELLING_PRICE")
-	private Double sellingPrice;
+	@Column(name = "SELLING_PRICE", scale = 2)
+	private BigDecimal sellingPrice;
 	
 	@JsonBackReference
 	@ManyToOne
