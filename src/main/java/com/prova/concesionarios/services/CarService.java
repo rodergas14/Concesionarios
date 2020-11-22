@@ -23,8 +23,6 @@ public class CarService {
 	}
 
 	public List<Car> findAll(Sort sort) {
-		sort.stream()
-		.filter(predicate)
 		return carRepository.findAll(sort);
 	}
 

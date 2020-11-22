@@ -37,7 +37,7 @@ public class DealershipCar {
 	private Set<Car> cars;
 	
 	
-	@Formula("(select sum(c.SELLING_PRICE) - sum(c.COST)  from CAR c "
+	@Formula("(select COALESCE(sum(c.SELLING_PRICE),0) - COALESCE(sum(c.COST),0)  from CAR c "
 			+ "where c.DEALERSHIP_CAR_STREET = STREET "
 			+ "AND c.DEALERSHIP_CAR_CITY = CITY "
 			+ "AND c.DEALERSHIP_CAR_COUNTRY = COUNTRY "
