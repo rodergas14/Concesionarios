@@ -12,34 +12,32 @@ import com.prova.concesionarios.repositories.CarRepository;
 @Service
 public class CarService {
 
-	private final CarRepository carRepostiory;
+	private final CarRepository carRepository;
 
-	public CarService(CarRepository carJPARepository) {
-		this.carRepostiory = carJPARepository;
+	public CarService(CarRepository carRepository) {
+		this.carRepository = carRepository;
 	}
 
 	public Car insertCar(Car car) {
-		return carRepostiory.save(car);
+		return carRepository.save(car);
 	}
 
 	public List<Car> findAll(Sort sort) {
-		return carRepostiory.findAll(sort);
+		return carRepository.findAll(sort);
 	}
 
 	public Optional<Car> findById(Long id) {
-		return carRepostiory.findById(id);
+		return carRepository.findById(id);
 	}
 
 	public Optional<Car> updateCar(Car c, Long id) {
-		return carRepostiory.findById(id).map(car -> {
-			return carRepostiory.save(car);
-		});
-
+		return carRepository.findById(id)
+				.map(carRepository::save);
 	}
 
 	public Optional<Car> deleteCar(Long id) {
-		return carRepostiory.findById(id).map(car -> {
-			carRepostiory.deleteById(id);
+		return carRepository.findById(id).map(car -> {
+			carRepository.deleteById(id);
 			return car;
 		});
 	}
