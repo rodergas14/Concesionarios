@@ -30,34 +30,25 @@ public class CarService {
 		return carRepository.findById(id);
 	}
 
-	public Optional<Car> updateCar(Car c, Long id) {
-		Optional<Car> selectedCarOptional = carRepository.findById(id);
+	public Optional<Car> updateCar(Car car, Long id) {
 		
-		Car selectedCar = selectedCarOptional.get();
-		if(isCarUpdatable(selectedCar)) {
-			carRepository.save(selectedCar);
-		}else {
-			throw new RuntimeException("No se puede modificar un coche ya vendido");
-		}
-		
-		return selectedCarOptional;
+		return carRepository.findById(id)
+		.filter(carInstance -> isCarUpdatable(carInstance))
+		.map(carInstance -> Optional.of(carRepository.save(car)))
+		.orElseThrow(() -> new RuntimeException("No se puede modificar el coche"));
 				
 	}
 
 	public Optional<Car> deleteCar(Long id) {
 		
-		Optional<Car> selectedCarOptional = carRepository.findById(id);
-		
-		Car selectedCar = selectedCarOptional.get();
-		if(isCarDeletable(selectedCar)) {
-			carRepository.deleteById(id);
-		}else {
-			throw new RuntimeException("No se puede eliminar un coche ya vendido");
-		}
-		
-		return selectedCarOptional;
+		return carRepository.findById(id)
+		.filter(carInstance -> isCarDeletable(carInstance))
+		.map(carInstance -> {
+			carRepository.delete(carInstance);
+			return Optional.of(carInstance);
+		})
+		.orElseThrow(() -> new RuntimeException("No se puede eliminar el coche"));
 	}
-	
 	
 	private boolean isCarUpdatable(Car car) {
 		boolean isUpdatable = true;
