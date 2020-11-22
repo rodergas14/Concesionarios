@@ -1,27 +1,37 @@
 package com.prova.concesionarios.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import lombok.Data;
 
 
 @MappedSuperclass
+@Data
 public class BaseEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
-	public Long getId() {
-		return id;
-	}
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updated;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	@Override
 	public int hashCode() {
