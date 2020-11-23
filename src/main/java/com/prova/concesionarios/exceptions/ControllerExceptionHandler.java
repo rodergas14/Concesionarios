@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 	
-	  @ExceptionHandler(value = {DeleteCarException.class})
-	  public ResponseEntity<DeleteCarException> deleteCarException(DeleteCarException exception) {
-	    return new ResponseEntity(exception.getMessage(),HttpStatus.BAD_REQUEST);
+	  @ExceptionHandler(value = {DeleteCarException.class,UpdateCarException.class})
+	  public ResponseEntity<String> deleteCarException(DeleteCarException exception) {
+	    return ResponseEntity.badRequest().body(exception.getMessage());
 	  }
 	
-	  @ExceptionHandler(value = {UpdateCarException.class})
-	  public ResponseEntity<UpdateCarException> deleteCarException(UpdateCarException exception) {
-			 return new ResponseEntity(exception.getMessage(),HttpStatus.BAD_REQUEST);
-	  }
 }
