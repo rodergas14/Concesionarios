@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,11 +50,9 @@ public class Car extends BaseEntity{
 	private BigDecimal cost;
 	
 	@Column(name = "SELLING_DATE")
-	@JsonFormat(pattern="dd/MM/YYYY HH:mm:ss")
 	private LocalDateTime sellingDate;
 	
 	@Column(name = "ADMISSION_DATE")
-	@JsonFormat(pattern="dd/MM/YYYY HH:mm:ss")
 	private LocalDateTime admissionDate;
 	
 	@Column(name = "IS_SOLD")
@@ -64,7 +64,7 @@ public class Car extends BaseEntity{
 	@Column(name = "SELLING_PRICE", scale = 2)
 	private BigDecimal sellingPrice;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "DEALERSHIP_CAR_STREET", referencedColumnName = "STREET", insertable = false, updatable = false)
 	@JoinColumn(name = "DEALERSHIP_CAR_CITY", referencedColumnName = "CITY",insertable = false, updatable = false)
