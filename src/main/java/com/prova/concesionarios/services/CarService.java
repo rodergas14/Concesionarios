@@ -59,7 +59,7 @@ public class CarService {
 
 	private boolean isCarUpdatable(Car car) {
 		boolean isUpdatable = true;
-		if(car.getIsSold()) throw new UpdateCarException("No se puede eliminar el coche");
+		if(car.getIsSold()) throw new UpdateCarException("No se puede modificar el coche");
 
 		return isUpdatable;
 	}
