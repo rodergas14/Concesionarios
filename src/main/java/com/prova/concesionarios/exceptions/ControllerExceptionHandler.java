@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerExceptionHandler {
 	
 	  @ExceptionHandler(value = {DeleteCarException.class,UpdateCarException.class})
-	  public ResponseEntity<String> deleteCarException(DeleteCarException exception) {
+	  public ResponseEntity<String> deleteCarException(RuntimeException exception) {
 	    return ResponseEntity.badRequest().body(exception.getMessage());
 	  }
 	
