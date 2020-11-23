@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -66,11 +67,13 @@ public class Car extends BaseEntity{
 	
 	//@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "DEALERSHIP_CAR_STREET", referencedColumnName = "STREET", insertable = false, updatable = false)
-	@JoinColumn(name = "DEALERSHIP_CAR_CITY", referencedColumnName = "CITY",insertable = false, updatable = false)
-	@JoinColumn(name = "DEALERSHIP_CAR_COUNTRY", referencedColumnName = "COUNTRY",insertable = false, updatable = false)
-	@JoinColumn(name = "DEALERSHIP_CAR_STATE_OR_PROVINCE",referencedColumnName = "STATE_OR_PROVINCE", insertable = false, updatable = false)
-	@JoinColumn(name = "DEALERSHIP_CAR_ZIP_CODE",referencedColumnName = "ZIP_CODE", insertable = false, updatable = false)
+	@JoinColumns({
+		@JoinColumn(name = "DEALERSHIP_CAR_STREET", referencedColumnName = "STREET", insertable = false, updatable = false),
+		@JoinColumn(name = "DEALERSHIP_CAR_CITY", referencedColumnName = "CITY",insertable = false, updatable = false),
+		@JoinColumn(name = "DEALERSHIP_CAR_COUNTRY", referencedColumnName = "COUNTRY",insertable = false, updatable = false),
+		@JoinColumn(name = "DEALERSHIP_CAR_STATE_OR_PROVINCE",referencedColumnName = "STATE_OR_PROVINCE", insertable = false, updatable = false),
+		@JoinColumn(name = "DEALERSHIP_CAR_ZIP_CODE",referencedColumnName = "ZIP_CODE", insertable = false, updatable = false)
+	})
 	private DealershipCar delearshipCar;
 
 

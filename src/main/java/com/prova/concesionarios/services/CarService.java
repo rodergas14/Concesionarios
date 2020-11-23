@@ -10,11 +10,13 @@ import com.prova.concesionarios.exceptions.DeleteCarException;
 import com.prova.concesionarios.exceptions.UpdateCarException;
 import com.prova.concesionarios.model.Car;
 import com.prova.concesionarios.repositories.CarRepository;
+import com.prova.concesionarios.repositories.DealershipCarRepository;
 
 @Service
 public class CarService {
 
 	private final CarRepository carRepository;
+	
 
 	public CarService(CarRepository carRepository) {
 		this.carRepository = carRepository;
